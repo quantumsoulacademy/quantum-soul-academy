@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Soul Academy - Understanding the Mind, Awakening the Soul</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-img-link">
+                <img src="images/logo1.png" alt="Quantum Soul Academy" class="logo-image">
+            </a>
+            <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="auth.html" class="btn btn-outline nav-btn"
+                    style="color: white !important; border-color: white;">Log In</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <canvas id="particle-canvas"></canvas>
+        <!-- Background Sacred Symbols -->
+        <div class="hero-bg-symbols">
+            <!-- Flower of Life (Top Right) -->
+            <svg class="hero-symbol float-symbol" style="top: -10%; right: -5%; width: 400px; height: 400px;"
+                viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="20" />
+                <circle cx="50" cy="25" r="20" />
+                <circle cx="75" cy="35" r="20" />
+                <circle cx="75" cy="65" r="20" />
+                <circle cx="50" cy="75" r="20" />
+                <circle cx="25" cy="65" r="20" />
+                <circle cx="25" cy="35" r="20" />
+            </svg>
+            <!-- Sri Yantra (Bottom Left) -->
+            <svg class="hero-symbol spin-slow" style="bottom: -10%; left: -5%; width: 500px; height: 500px;"
+                viewBox="0 0 100 100">
+                <path d="M50 5 L90 80 L10 80 Z" stroke-linejoin="round" />
+                <path d="M50 95 L90 20 L10 20 Z" stroke-linejoin="round" />
+                <circle cx="50" cy="50" r="30" opacity="0.5" />
+                <circle cx="50" cy="50" r="10" />
+            </svg>
+        </div>
+
+        <div class="container text-center">
+            <h1 class="hero-title reveal">Quantum Soul Academy</h1>
+            <p class="hero-subtitle reveal">Understanding the Mind, Awakening the Soul</p>
+
+            <a href="contact.html" class="btn btn-primary reveal">Start Your Journey</a>
+        </div>
+    </section>
+
+    <!-- Services Preview -->
+    <section class="section bg-light">
+        <div class="container reveal">
+            <h2 class="section-title text-center">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <!-- Sri Yantra (Simplified Star Representation) -->
+                    <svg class="sacred-symbol spin-slow" viewBox="0 0 100 100">
+                        <path d="M50 5 L90 80 L10 80 Z" stroke-linejoin="round" />
+                        <path d="M50 95 L90 20 L10 20 Z" stroke-linejoin="round" />
+                        <circle cx="50" cy="50" r="30" opacity="0.5" />
+                        <circle cx="50" cy="50" r="10" />
+                        <path d="M50 0 L50 100 M0 50 L100 50" opacity="0.3" />
+                    </svg>
+                    <h3>Astro Numerology</h3>
+                    <p>Unlocking the secrets of your life path through the alignment of stars and numbers.</p>
+                </div>
+                <div class="service-card">
+                    <!-- Flower of Life (Simplified) -->
+                    <svg class="sacred-symbol pulse-glow" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="20" />
+                        <circle cx="50" cy="25" r="20" />
+                        <circle cx="75" cy="35" r="20" />
+                        <circle cx="75" cy="65" r="20" />
+                        <circle cx="50" cy="75" r="20" />
+                        <circle cx="25" cy="65" r="20" />
+                        <circle cx="25" cy="35" r="20" />
+                    </svg>
+                    <h3>Spiritual Knowledge & Meditation</h3>
+                    <p>Techniques to calm the mind and connect with your higher self.</p>
+                </div>
+                <div class="service-card">
+                    <!-- Merkaba / Infinity Spiral -->
+                    <svg class="sacred-symbol float-symbol" viewBox="0 0 100 100">
+                        <path d="M50 10 Q90 50 50 90 Q10 50 50 10" />
+                        <path d="M50 10 Q10 50 50 90 Q90 50 50 10" transform="rotate(90 50 50)" />
+                        <circle cx="50" cy="50" r="5" fill="var(--secondary-color)" />
+                        <path d="M20 20 L80 80 M80 20 L20 80" opacity="0.5" />
+                    </svg>
+                    <h3>Mind Magic Techniques</h3>
+                    <p>Psychological tools and exercises to reprogram the subconscious mind.</p>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top: 2rem;">
+                <a href="services.html" class="btn btn-outline">View All Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Founder Preview -->
+    <section class="section about-preview">
+        <div class="container text-center reveal">
+            <h2 class="section-title">Meet the Founder</h2>
+            <div class="founder-card">
+                <!-- Background Sacred Symbols -->
+                <div class="founder-bg-symbols">
+                    <!-- Merkaba / Infinity Spiral (Top Left) -->
+                    <svg class="hero-symbol float-symbol" style="top: -10%; left: -10%; width: 300px; height: 300px;"
+                        viewBox="0 0 100 100">
+                        <path d="M50 10 Q90 50 50 90 Q10 50 50 10" />
+                        <path d="M50 10 Q10 50 50 90 Q90 50 50 10" transform="rotate(90 50 50)" />
+                        <circle cx="50" cy="50" r="5" />
+                    </svg>
+                    <!-- Flower of Life (Bottom Right) -->
+                    <svg class="hero-symbol spin-slow" style="bottom: -20%; right: -20%; width: 500px; height: 500px;"
+                        viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="20" />
+                        <circle cx="50" cy="25" r="20" />
+                        <circle cx="75" cy="35" r="20" />
+                        <circle cx="75" cy="65" r="20" />
+                        <circle cx="50" cy="75" r="20" />
+                        <circle cx="25" cy="65" r="20" />
+                        <circle cx="25" cy="35" r="20" />
+                        <circle cx="50" cy="50" r="40" opacity="0.3" stroke-dasharray="2,2" />
+                    </svg>
+                </div>
+
+                <div class="founder-image-wrapper">
+                    <img src="images/Founder%20002.png" alt="V. Raja Sekhar" class="founder-image">
+                </div>
+                <h3><span class="founder-name">V. Raja Sekhar</span></h3>
+                <p class="founder-credentials text-gold">Founder and CEO of Quantum Soul Academy</p>
+                <p class="section-description">
+                    M.Sc Psychology | Astro-Numerologist | Spiritual Scientist<br>
+                    Dedicated to helping people transform their lives through a holistic approach that combines
+                    scientific psychology with ancient spiritual wisdom.
+                </p>
+                <a href="about.html" class="btn btn-outline" style="margin-top: 1rem;">Read Full Bio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="section bg-light">
+        <div class="container reveal">
+            <h2 class="section-title text-center">Why Choose Us?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-atom feature-icon"></i>
+                    <h3>Scientific Approach</h3>
+                    <p>We bridge ancient spiritual wisdom with modern psychological science for comprehensive growth.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-hand-holding-heart feature-icon"></i>
+                    <h3>Personalized Guidance</h3>
+                    <p>Every journey is unique. We provide tailored solutions aligned with your specific life path.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-star feature-icon"></i>
+                    <h3>Holistic Transformation</h3>
+                    <p>Our methods address the Mind, Body, and Soul to create lasting and meaningful change.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who Can Benefit Section -->
+    <section class="section">
+        <div class="container reveal">
+            <h2 class="section-title text-center">Who Can Benefit?</h2>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <i class="fas fa-user-graduate audience-icon"></i>
+                    <h3>Students</h3>
+                    <p>Seeking clarity and confidence</p>
+                </div>
+                <div class="audience-card">
+                    <i class="fas fa-briefcase audience-icon"></i>
+                    <h3>Professionals</h3>
+                    <p>Facing stress and confusion</p>
+                </div>
+                <div class="audience-card">
+                    <i class="fas fa-infinity audience-icon"></i>
+                    <h3>Individuals</h3>
+                    <p>Interested in astrology and numerology</p>
+                </div>
+                <div class="audience-card">
+                    <i class="fas fa-spa audience-icon"></i>
+                    <h3>Spiritual Seekers</h3>
+                    <p>Looking for inner balance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Flow Section (How It Works) -->
+    <section class="section bg-light">
+        <div class="container reveal">
+            <h2 class="section-title text-center">How It Works</h2>
+            <div class="process-grid">
+                <!-- Step 1 -->
+                <div class="process-card">
+                    <div class="step-icon-wrapper">
+                        <i class="fas fa-calendar-check step-icon"></i>
+                        <div class="step-number">1</div>
+                    </div>
+                    <h3>Book a Consultation</h3>
+                    <p>Schedule your session to start your journey.</p>
+                </div>
+                <!-- Arrow (Visual only via CSS generally, but kept simple for grid) -->
+
+                <!-- Step 2 -->
+                <div class="process-card">
+                    <div class="step-icon-wrapper">
+                        <i class="fas fa-comments step-icon"></i>
+                        <div class="step-number">2</div>
+                    </div>
+                    <h3>Personal Guidance Session</h3>
+                    <p>Receive 1-on-1 insights tailored to you.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="process-card">
+                    <div class="step-icon-wrapper">
+                        <i class="fas fa-sun step-icon"></i>
+                        <div class="step-number">3</div>
+                    </div>
+                    <h3>Inner Clarity & Transformation</h3>
+                    <p>Experience profound shifts and balance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq-section">
+        <div class="container reveal">
+            <h2 class="section-title text-center">Frequently Asked Questions</h2>
+            <div class="faq-container">
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What is Quantum Soul Academy?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Quantum Soul Academy empowers individuals through psychology, astrology, numerology,
+                            meditation, and spiritual guidance to achieve clarity, balance, and inner transformation.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Who is the founder of Quantum Soul Academy?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our founder is <strong>Mr. V. Raja Sekhar</strong> – an MSc in Psychology, Astro
+                            Numerologist, Spiritual Scientist, and Meditation Coach who has guided over 75,000 students.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Are your services based on superstition or science?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We bridge ancient wisdom with modern science. Our approach combines psychological principles
+                            with spiritual sciences like astrology and numerology, avoiding blind superstition.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What services does Quantum Soul Academy offer?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We offer Astrology Chart Reading, Numerology, Color Technique, Kubera Sadhana, Music Therapy
+                            using frequencies, and various Meditation programs.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Are the services online or offline?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Currently, we offer both online and offline services. You can book consultations and access
+                            courses online directly through our dashboard.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How do I access paid services after login?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Simply log in to your dashboard. You will see a list of services. Click on "Buy Now" for any
+                            service, complete the payment, and it will be instantly unlocked for you to access.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Will I get lifetime access to purchased content?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, once you purchase a course or service, you get lifetime access to the content through
+                            your student dashboard.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Are these programs suitable for students?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely. We have specialized programs designed to help students improve focus, memory, and
+                            confidence while managing exam stress.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Is payment secure?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, we use secure payment gateways (UPI, etc.) to ensure your transaction details are safe
+                            and protected.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Do you offer funds?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Refund policies vary by service. generally, once a digital course is accessed, it is
+                            non-refundable. Please check the specific terms during booking.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How can I contact Quantum Soul Academy?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You can email us at <a
+                                href="mailto:contact@quantumsoulacademy.com">contact@quantumsoulacademy.com</a> or use
+                            the "Contact Us" page on this website.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Can schools and colleges invite you for sessions?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, Mr. V. Raja Sekhar frequently visits schools and colleges to conduct workshops on
+                            student psychology and motivation.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Do I need prior knowledge to join?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No prior knowledge is required. Our programs are designed to be simple and easy to understand
+                            for beginners.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Is this suitable for all age groups?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, from students to working professionals and homemakers, our guidance is tailored to
+                            benefit individuals of all age groups.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Quantum Soul Academy</h3>
+                    <p>Empowering individuals through holistic guidance.</p>
+                </div>
+                <div class="footer-nav">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> quantumsoulacademy1@gmail.com</p>
+                    <p><i class="fab fa-whatsapp"></i> +91 88978 00247</p>
+                </div>
+            </div>
+            <p>&copy; 2024 Quantum Soul Academy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK (Compat Version) -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+
+    <script src="js/script.js"></script>
+
+    <!-- Inline Styles for specific Home Layout components not in global yet -->
+    <!-- (Styles moved to global style.css for consistent Ethereal Theme) -->
+    <style>
+        /* Cleaned up for global theme */
+    </style>
+</body>
+
+</html>

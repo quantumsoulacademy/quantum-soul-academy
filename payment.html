@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Booking - Quantum Soul Academy</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .payment-card {
+            background: #ffffff;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #2ecc71;
+            margin-bottom: 1.5rem;
+            animation: pop-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes pop-in {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .payment-options {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2.5rem;
+            text-align: left;
+        }
+
+        .payment-option-box {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .upi-container {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .qr-image {
+            max-width: 250px;
+            border-radius: 10px;
+            border: 2px solid #eee;
+            margin-bottom: 1rem;
+        }
+
+        .upi-id-box {
+            background: #eef;
+            padding: 0.8rem;
+            border-radius: 5px;
+            display: inline-block;
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            border: 1px dashed var(--primary-color);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-img-link">
+                <img src="images/logo1.png" alt="Quantum Soul Academy" class="logo-image">
+            </a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section" style="padding-top: 150px; min-height: 80vh;">
+        <div class="container">
+            <div class="payment-card">
+                <i class="fas fa-check-circle success-icon"></i>
+                <h1 class="section-title" style="font-size: 2rem;">Booking Received!</h1>
+                <p style="color: #666; font-size: 1.1rem;">Thank you for your request. To finalize your consultation
+                    appointment, please proceed with the payment.</p>
+
+                <div class="payment-options">
+
+                    <!-- Option 1: UPI -->
+                    <div class="payment-option-box">
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem;"><i class="fas fa-qrcode"></i> Pay
+                            via UPI</h3>
+                        <p>Scan the QR code or use the UPI ID below to make the payment.</p>
+                        <div class="upi-container">
+                            <img src="images/upi-qr.jpg" alt="UPI QR Code" class="qr-image">
+                            <div>
+                                <span class="upi-id-box">8897800247-7@ybl</span>
+                            </div>
+                            <div style="margin-top: 1.5rem;">
+                                <a href="upi://pay?pa=8897800247-7@ybl&pn=Quantum%20Soul%20Academy&cu=INR"
+                                    class="btn btn-primary" style="width: 100%; max-width: 300px;">
+                                    <i class="fas fa-mobile-alt"></i> Tap to Pay on Mobile
+                                </a>
+                                <p style="font-size: 0.9rem; color: #777; margin-top: 0.5rem;">(Opens GPay, PhonePe,
+                                    Paytm, etc.)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Option 2: Cash -->
+                    <div class="payment-option-box">
+                        <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;"><i
+                                class="fas fa-money-bill-wave"></i> Cash Payment</h3>
+                        <p>You can also pay in cash directly at our center during your visit.</p>
+                    </div>
+
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <button id="confirm-payment-btn" class="btn btn-primary" onclick="handlePaymentSuccess()"
+                        style="margin-bottom: 1rem; background-color: #27ae60; border-color: #27ae60;">
+                        <i class="fas fa-check-circle"></i> I Have Completed Payment
+                    </button>
+                    <br>
+                    <a href="dashboard.html" class="btn btn-outline">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Quantum Soul Academy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK (Compat Version) -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+
+    <script>
+        // Inline Payment Logic
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+
+        // Parse URL Params
+        const urlParams = new URLSearchParams(window.location.search);
+        const serviceId = urlParams.get('serviceId');
+        const serviceName = urlParams.get('name');
+
+        // Update UI
+        if (serviceName) {
+            document.querySelector('.section-title').textContent = "Pay for " + serviceName;
+            document.querySelector('p[style*="color: #666"]').textContent = "Please complete the payment to unlock this service.";
+        }
+
+        // Handle Payment Verification (Demo Mode)
+        function handlePaymentSuccess() {
+            auth.onAuthStateChanged(user => {
+                if (user && serviceId) {
+                    const confirmBtn = document.getElementById('confirm-payment-btn');
+                    confirmBtn.innerText = "Verifying...";
+                    confirmBtn.disabled = true;
+
+                    // Update Firestore: Add serviceId to purchases array
+                    const userRef = db.collection('users').doc(user.uid);
+
+                    userRef.set({
+                        purchases: firebase.firestore.FieldValue.arrayUnion(serviceId)
+                    }, { merge: true }) // Merge to avoid overwriting other data
+                        .then(() => {
+                            console.log("Purchase recorded!");
+                            alert("Payment Verified! Unlocking content...");
+                            window.location.href = 'dashboard.html';
+                        })
+                        .catch((error) => {
+                            console.error("Error updating purchase:", error);
+                            alert("Error: " + error.message);
+                            confirmBtn.disabled = false;
+                            confirmBtn.innerText = "I Have Completed Payment";
+                        });
+
+                } else {
+                    if (!user) {
+                        alert("Please log in first.");
+                        window.location.href = 'auth.html';
+                    } else {
+                        alert("No service selected.");
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

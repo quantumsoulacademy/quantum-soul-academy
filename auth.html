@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Sign Up - Quantum Soul Academy</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="auth-page">
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-img-link">
+                <!-- Using text logo if image fails or just for Auth page simplicity, but using the image as per main site -->
+                <img src="images/logo1.png" alt="Quantum Soul Academy" class="logo-image">
+            </a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="auth-container section">
+        <!-- Dynamic Background Elements -->
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+        <div class="bg-orb orb-3"></div>
+
+        <div class="container">
+            <div class="auth-box">
+                <!-- Toggle Buttons -->
+                <div class="auth-toggle">
+                    <button id="login-toggle" class="active">Log In</button>
+                    <button id="signup-toggle">Sign Up</button>
+                </div>
+
+                <!-- Login Form -->
+                <form id="login-form" class="auth-form active">
+                    <h2>Welcome Back</h2>
+                    <p class="auth-subtitle">Log in to access your dashboard.</p>
+
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <input type="email" id="login-email" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group password-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required placeholder="Enter your password">
+                        <i class="fas fa-eye password-toggle" data-target="login-password"></i>
+                    </div>
+
+                    <div style="text-align: right; margin-bottom: 1rem;">
+                        <a href="#" id="forgot-password-link"
+                            style="color: var(--secondary-color); font-size: 0.9rem; text-decoration: none;">Forgot
+                            Password?</a>
+                    </div>
+
+                    <p id="login-error" class="error-msg"></p>
+
+                    <button type="submit" class="btn btn-primary full-width">Log In</button>
+
+                    <!-- Google Sign In -->
+                    <div class="auth-divider">
+                        <span>OR</span>
+                    </div>
+                    <button type="button" id="google-login-btn" class="btn btn-outline full-width google-btn">
+                        <i class="fab fa-google" style="margin-right: 10px;"></i> Continue with Google
+                    </button>
+                </form>
+
+                <!-- Sign Up Form -->
+                <form id="signup-form" class="auth-form">
+                    <h2>Create Account</h2>
+                    <p class="auth-subtitle">Join us to start your journey.</p>
+
+                    <div class="form-group">
+                        <label for="signup-email">Email Address</label>
+                        <input type="email" id="signup-email" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group password-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" required
+                            placeholder="Create a password (min 6 chars)">
+                        <i class="fas fa-eye password-toggle" data-target="signup-password"></i>
+                    </div>
+
+                    <p id="signup-error" class="error-msg"></p>
+
+                    <button type="submit" class="btn btn-primary full-width">Sign Up</button>
+
+                    <div class="auth-divider">
+                        <span>OR</span>
+                    </div>
+                    <button type="button" id="google-signup-btn" class="btn btn-outline full-width google-btn">
+                        <i class="fab fa-google" style="margin-right: 10px;"></i> Continue with Google
+                    </button>
+                </form>
+
+                <!-- Forgot Password Form -->
+                <form id="forgot-password-form" class="auth-form">
+                    <h2>Reset Password</h2>
+                    <p class="auth-subtitle">Enter your email to receive reset instructions.</p>
+
+                    <div class="form-group">
+                        <label for="reset-email">Email Address</label>
+                        <input type="email" id="reset-email" required placeholder="Enter your email">
+                    </div>
+
+                    <p id="reset-msg" class="error-msg" style="color: green;"></p>
+                    <p id="reset-error" class="error-msg"></p>
+
+                    <button type="submit" class="btn btn-primary full-width">Send Reset Link</button>
+
+                    <div style="text-align: center; margin-top: 1rem;">
+                        <a href="#" id="back-to-login"
+                            style="color: var(--text-muted); font-size: 0.9rem; text-decoration: none;">Back to
+                            Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK (Compat Version) -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+    <!-- Config and Auth Logic -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+
+    <style>
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            padding-top: 5rem;
+            min-height: 80vh;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Floating Orbs Animation */
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 1;
+            opacity: 0.6;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: rgba(212, 175, 55, 0.3);
+            /* Gold */
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: rgba(142, 68, 173, 0.2);
+            /* Purple */
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: rgba(46, 204, 113, 0.2);
+            /* Green */
+            top: 40%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            33% {
+                transform: translate(30px, -50px);
+            }
+
+            66% {
+                transform: translate(-20px, 20px);
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .auth-box {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            width: 100%;
+            margin: 0 auto;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Gold top border */
+        .auth-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-gold);
+        }
+
+        .auth-toggle {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #eee;
+        }
+
+        .auth-toggle button {
+            flex: 1;
+            padding: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .auth-toggle button.active {
+            color: var(--primary-color);
+        }
+
+        .auth-toggle button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+
+        .auth-form {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .auth-subtitle {
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .error-msg {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            min-height: 1.2rem;
+            font-weight: 500;
+        }
+
+        .full-width {
+            width: 100%;
+        }
+
+        /* Password Toggle Styles */
+        .password-group {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 42px;
+            /* Adjust based on label height + padding */
+            color: var(--text-muted);
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .password-toggle:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Google Auth Styles */
+        .auth-divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .auth-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #eee;
+        }
+
+        .auth-divider span {
+            background: #fff;
+            padding: 0 10px;
+            position: relative;
+            z-index: 1;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .google-btn {
+            border-color: #ddd !important;
+            color: var(--text-dark) !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .google-btn:hover {
+            background-color: #f8f9fa !important;
+            border-color: #ccc !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+    </style>
+</body>
+
+</html>

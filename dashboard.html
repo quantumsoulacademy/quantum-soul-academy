@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Quantum Soul Academy</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-img-link">
+                <img src="images/logo1.png" alt="Quantum Soul Academy" class="logo-image">
+            </a>
+            <div class="user-menu">
+                <button id="logout-btn" class="btn btn-outline"
+                    style="padding: 0.5rem 1.5rem; border-color: white; color: white;">Log Out</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-wrapper">
+        <div class="container dashboard-grid">
+
+            <!-- Sidebar / Profile Section -->
+            <aside class="dashboard-sidebar">
+                <div class="profile-card">
+                    <div class="profile-img-container">
+                        <!-- Default to a FontAwesome icon if no image, or handle in JS -->
+                        <img id="user-photo" src="https://ui-avatars.com/api/?name=Student&background=random"
+                            alt="Profile Photo"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <i class="fas fa-user-circle" style="display:none; font-size: 100%; color: #ccc;"></i>
+                    </div>
+                    <h3 id="user-name">Welcome, Student</h3>
+                    <p id="user-email">loading...</p>
+                    <div class="profile-divider"></div>
+                    <ul class="profile-nav">
+                        <li class="nav-item active" onclick="switchTab('home')"><i class="fas fa-book-open"></i> My
+                            Courses</li>
+                        <li class="nav-item" onclick="switchTab('appointments')"><i class="fas fa-calendar-check"></i>
+                            Appointments</li>
+                        <li class="nav-item" onclick="switchTab('settings')"><i class="fas fa-user-cog"></i> Settings
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="dashboard-content">
+
+                <!-- HOME VIEW (Courses) -->
+                <div id="view-home" class="dashboard-view">
+                    <div class="content-header">
+                        <h2>My Sanctuary</h2>
+                        <p>Access your enrolled courses and resources below.</p>
+                    </div>
+
+                    <div class="dashboard-section">
+                        <h3 class="section-label">All Services</h3>
+                        <div class="content-grid">
+
+                            <!-- Color Technique -->
+                            <div class="content-card" data-id="color-technique">
+                                <div class="card-thumb">
+                                    <img src="images/color-technique-1.jpg" alt="Color Technique" class="thumb-img">
+                                    <div class="lock-overlay">
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                    <span class="badge-access badge-locked">Locked</span>
+                                </div>
+                                <div class="card-body">
+                                    <h4>Color Technique</h4>
+                                    <p>Master the art of color therapy.</p>
+                                    <!-- Actions -->
+                                    <button class="btn btn-sm btn-primary btn-buy"
+                                        onclick="window.location.href='payment.html?serviceId=color-technique&name=Color%20Technique'">Buy
+                                        Now</button>
+                                    <button class="btn btn-sm btn-outline btn-access" style="display: none;">Access
+                                        Content</button>
+                                </div>
+                            </div>
+
+                            <!-- Kubera Sadhana -->
+                            <div class="content-card" data-id="kubera-sadhana">
+                                <div class="card-thumb">
+                                    <img src="images/kubera-sadhana.jpg" alt="Kubera Sadhana" class="thumb-img">
+                                    <div class="lock-overlay">
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                    <span class="badge-access badge-locked">Locked</span>
+                                </div>
+                                <div class="card-body">
+                                    <h4>Kubera Sadhana</h4>
+                                    <p>Unlock abundance and prosperity.</p>
+                                    <button class="btn btn-sm btn-primary btn-buy"
+                                        onclick="window.location.href='payment.html?serviceId=kubera-sadhana&name=Kubera%20Sadhana'">Buy
+                                        Now</button>
+                                    <button class="btn btn-sm btn-outline btn-access" style="display: none;">Access
+                                        Content</button>
+                                </div>
+                            </div>
+
+                            <!-- PDF Resources (Free for now or Locked?) Let's lock it as "resources" -->
+                            <div class="content-card" data-id="course-materials">
+                                <div class="card-thumb icon-thumb">
+                                    <i class="fas fa-file-pdf"></i>
+                                    <div class="lock-overlay">
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                    <span class="badge-access badge-locked">Locked</span>
+                                </div>
+                                <div class="card-body">
+                                    <h4>Course Materials</h4>
+                                    <p>Downloadable guides & checklists.</p>
+                                    <button class="btn btn-sm btn-primary btn-buy"
+                                        onclick="window.location.href='payment.html?serviceId=course-materials&name=Course%20Materials'">Buy
+                                        Now</button>
+                                    <button class="btn btn-sm btn-outline btn-access" style="display: none;">Browse
+                                        Files</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- APPOINTMENTS VIEW -->
+                <div id="view-appointments" class="dashboard-view" style="display: none;">
+                    <div class="content-header">
+                        <h2>My Appointments</h2>
+                        <p>Track your scheduled sessions and webinars.</p>
+                    </div>
+                    <div class="dashboard-section">
+                        <div class="appointment-list">
+                            <div class="appointment-item">
+                                <div class="appt-date">
+                                    <span class="day">12</span>
+                                    <span class="month">JAN</span>
+                                </div>
+                                <div class="appt-info">
+                                    <h4>Personal Consultation</h4>
+                                    <p>with V. Raja Sekhar • 10:00 AM</p>
+                                </div>
+                                <div class="appt-status status-confirmed">Confirmed</div>
+                            </div>
+                            <div class="appointment-item">
+                                <div class="appt-date">
+                                    <span class="day">25</span>
+                                    <span class="month">JAN</span>
+                                </div>
+                                <div class="appt-info">
+                                    <h4>Advanced Astrology</h4>
+                                    <p>Live Webinar • 06:00 PM</p>
+                                </div>
+                                <div class="appt-status status-pending">Pending</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SETTINGS VIEW -->
+                <div id="view-settings" class="dashboard-view" style="display: none;">
+                    <div class="content-header">
+                        <h2>Profile Settings</h2>
+                        <p>Manage your account details.</p>
+                    </div>
+                    <div class="dashboard-section">
+                        <form id="profile-form"
+                            style="background: white; padding: 2rem; border-radius: 15px; max-width: 600px;">
+                            <div class="form-group">
+                                <label>Display Name</label>
+                                <input type="text" id="settings-name" class="form-control" placeholder="Your Name">
+                            </div>
+                            <div class="form-group">
+                                <label>Profile Photo URL</label>
+                                <input type="text" id="settings-photo" class="form-control"
+                                    placeholder="https://example.com/photo.jpg">
+                                <small style="color: grey;">Enter a direct link to an image.</small>
+                            </div>
+                            <p id="profile-msg" style="color: green; font-weight: 500;"></p>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Firebase SDK (Compat Version) -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+    <!-- Config and Auth Logic -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+
+    <script>
+        function switchTab(tabName) {
+            // Hide all views
+            document.querySelectorAll('.dashboard-view').forEach(view => {
+                view.style.display = 'none';
+            });
+
+            // Show selected view
+            const selectedView = document.getElementById('view-' + tabName);
+            if (selectedView) {
+                selectedView.style.display = 'block';
+            } else {
+                // Default to home if not found (or if 'courses' maps to home)
+                document.getElementById('view-home').style.display = 'block';
+            }
+
+            // Update Active Nav State
+            const navItems = document.querySelectorAll('.profile-nav li');
+            navItems.forEach(item => item.classList.remove('active'));
+
+            // Simple logic to set active class based on index or text (can be improved)
+            if (tabName === 'home') navItems[0].classList.add('active');
+            if (tabName === 'appointments') navItems[1].classList.add('active');
+            if (tabName === 'settings') navItems[2].classList.add('active');
+        }
+    </script>
+
+    <style>
+        /* Dashboard Specific Styles (Can be moved to style.css) */
+        .dashboard-wrapper {
+            background-color: var(--background-dark);
+            min-height: calc(100vh - 85px);
+            /* Minus header height approx */
+            padding: 2rem 0;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+        }
+
+        /* Sidebar Profile */
+        .profile-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 100px;
+        }
+
+        .profile-img-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--secondary-color);
+            padding: 3px;
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .profile-card h3 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.2rem;
+        }
+
+        #user-email {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            word-break: break-all;
+        }
+
+        .profile-divider {
+            height: 1px;
+            background: #eee;
+            margin: 1.5rem 0;
+        }
+
+        .profile-nav {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .profile-nav li {
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .profile-nav li:hover,
+        .profile-nav li.active {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--secondary-color);
+        }
+
+        .profile-nav li i {
+            width: 25px;
+        }
+
+        /* Main Content */
+        .dashboard-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .content-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            background-image: var(--gradient-hero);
+        }
+
+        .section-label {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-thumb {
+            height: 160px;
+            position: relative;
+        }
+
+        .card-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Lock Overlay */
+        .lock-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 2.5rem;
+            backdrop-filter: blur(2px);
+            z-index: 2;
+        }
+
+        .content-card.unlocked .lock-overlay {
+            display: none;
+        }
+
+        .content-card.unlocked .badge-locked {
+            display: none;
+        }
+
+        .icon-thumb {
+            background: var(--background-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--secondary-color);
+        }
+
+        .badge-access {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            z-index: 3;
+            font-weight: bold;
+        }
+
+        .badge-locked {
+            background: #999;
+            color: #fff;
+        }
+
+        .content-card.unlocked .badge-access {
+            background: #27ae60;
+            /* Green */
+            color: #fff;
+        }
+
+        /* Insert 'Purchased' badge via JS or CSS content if unlocked? */
+        /* Let's keep it simple: We'll toggle DOM elements in JS */
+
+        .card-body {
+            padding: 1.2rem;
+        }
+
+        .card-body h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .card-body p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+        }
+
+        /* Appointments */
+        .appointment-list {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .appointment-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .appointment-item:last-child {
+            border-bottom: none;
+        }
+
+        .appt-date {
+            background: var(--background-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-right: 1.5rem;
+            min-width: 70px;
+        }
+
+        .appt-date .day {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .appt-date .month {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .appt-info {
+            flex-grow: 1;
+        }
+
+        .appt-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+            color: var(--text-dark);
+        }
+
+        .appt-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .appt-status {
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .status-confirmed {
+            background: rgba(46, 204, 113, 0.15);
+            color: #27ae60;
+        }
+
+        .status-pending {
+            background: rgba(241, 196, 15, 0.15);
+            color: #d35400;
+            /* Darker orange for readability */
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-card {
+                position: relative;
+                top: 0;
+            }
+        }
+    </style>
+</body>
+
+</html>
